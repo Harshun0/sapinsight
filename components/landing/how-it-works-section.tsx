@@ -5,39 +5,34 @@ import { useEffect, useRef, useState } from "react";
 const steps = [
   {
     number: "01",
-    title: "Define",
-    subtitle: "your agent",
-    description: "Describe what your agent should do. Set its capabilities, constraints, and goals in natural language or code.",
-    code: `const researcher = new Agent({
-  role: 'Research Analyst',
-  capabilities: ['web', 'docs', 'api'],
-  memory: true,
-  autonomy: 'full'
-})`,
+    title: "Online",
+    subtitle: "Sampling",
+    description:
+      "Reach the right respondents through vetted, quality-screened panels. Every completed survey is checked for engagement before it counts.",
+    tags: ["Audience Reach", "Quality Screened"],
+    href: "https://sapientainsights.com/online-sampling.html",
   },
   {
     number: "02",
-    title: "Assign",
-    subtitle: "the task",
-    description: "Give your agent a mission. It breaks down complex tasks into steps and executes them autonomously.",
-    code: `await researcher.execute({
-  task: 'Analyze competitor pricing',
-  sources: ['public-data', 'news'],
-  output: 'structured-report',
-  deadline: '2h'
-})`,
+    title: "Data",
+    subtitle: "Collection",
+    description:
+      "Fielded in real time with live quota tracking. Every response passes a validation check before it enters your dataset.",
+    tags: ["Live", "Quota", "Check", "Field"],
+    href: "https://sapientainsights.com/data-collection.html",
   },
   {
     number: "03",
-    title: "Monitor",
-    subtitle: "& scale",
-    description: "Track progress in real-time. Spin up more agents as needed. Pay only for compute used.",
-    code: `optimus.dashboard({
-  agents: [researcher],
-  metrics: ['tasks', 'latency', 'cost'],
-  alerts: true
-})
-// 847 tasks completed today`,
+    title: "Data",
+    subtitle: "Processing",
+    description:
+      "Raw responses become analysis-ready data. Cleaned, structured, and delivered on the timeline your project needs.",
+    stats: [
+      { label: "Cleaning", value: 84 },
+      { label: "Structuring", value: 72 },
+      { label: "Delivery", value: 91 },
+    ],
+    href: "https://sapientainsights.com/data-processing.html",
   },
 ];
 
@@ -67,7 +62,7 @@ export function HowItWorksSection() {
 
   return (
     <section
-      id="how-it-works"
+      id="services"
       ref={sectionRef}
       className="relative py-24 lg:py-32 bg-[oklch(0.09_0.01_260)] text-white overflow-hidden"
     >
@@ -81,16 +76,16 @@ export function HowItWorksSection() {
             <div className={`transition-all duration-1000 ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-12 opacity-0"}`}>
               <span className="inline-flex items-center gap-3 text-sm font-mono text-white/40 mb-8">
                 <span className="w-12 h-px bg-white/20" />
-                Process
+                Our Services
               </span>
             </div>
-            
+
             <h2 className={`text-6xl md:text-7xl lg:text-[128px] font-display tracking-tight leading-[0.85] transition-all duration-1000 delay-100 ${
               isVisible ? "translate-y-0 opacity-100" : "translate-y-16 opacity-0"
             }`}>
-              <span className="block">Define.</span>
-              <span className="block text-white/30">Deploy.</span>
-              <span className="block text-white/10">Scale.</span>
+              <span className="block">Sample.</span>
+              <span className="block text-white/30">Collect.</span>
+              <span className="block text-white/10">Process.</span>
             </h2>
           </div>
 
@@ -99,7 +94,7 @@ export function HowItWorksSection() {
             isVisible ? "opacity-100" : "opacity-0"
           }`}>
             <img
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/tree-uAia6REvB137CQyHFCf0za3O6h2zKO.png"
+              src="https://res.cloudinary.com/drvug594q/image/upload/v1787095155/bonsai-golden_elucnw.png"
               alt=""
               aria-hidden="true"
               className="absolute bottom-0 left-0 w-full h-full object-contain object-bottom"
@@ -117,21 +112,21 @@ export function HowItWorksSection() {
               type="button"
               onClick={() => setActiveStep(index)}
               className={`relative text-left p-8 lg:p-12 border transition-all duration-500 ${
-                activeStep === index 
-                  ? "bg-[#000000] border-white/60" 
+                activeStep === index
+                  ? "bg-[#000000] border-white/60"
                   : "bg-[#000000] border-white/25 hover:border-white/50"
               }`}
             >
               {/* Step number with animated line */}
               <div className="flex items-center gap-4 mb-8">
                 <span className={`text-4xl font-display transition-colors duration-300 ${
-                  activeStep === index ? "text-[#eca8d6]" : "text-white/20"
+                  activeStep === index ? "text-[#d4af6a]" : "text-white/20"
                 }`}>
                   {step.number}
                 </span>
                 <div className="flex-1 h-px bg-white/10 overflow-hidden">
                   {activeStep === index && (
-                    <div className="h-full bg-[#eca8d6]/50 animate-progress" />
+                    <div className="h-full bg-[#d4af6a]/50 animate-progress" />
                   )}
                 </div>
               </div>
@@ -144,6 +139,46 @@ export function HowItWorksSection() {
                 {step.subtitle}
               </span>
 
+              {/* Tags (Online Sampling / Data Collection) */}
+              {step.tags && (
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {step.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className={`text-xs font-mono px-3 py-1 border transition-colors duration-300 ${
+                        activeStep === index
+                          ? "border-[#d4af6a]/40 text-[#d4af6a]"
+                          : "border-white/15 text-white/40"
+                      }`}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+
+              {/* Stats (Data Processing) */}
+              {step.stats && (
+                <div className="flex flex-col gap-3 mb-6">
+                  {step.stats.map((stat) => (
+                    <div key={stat.label}>
+                      <div className="flex items-center justify-between text-xs font-mono text-white/40 mb-1">
+                        <span>{stat.label}</span>
+                        <span>{stat.value}%</span>
+                      </div>
+                      <div className="h-px bg-white/10 overflow-hidden">
+                        <div
+                          className={`h-full transition-all duration-700 ${
+                            activeStep === index ? "bg-[#d4af6a]/60" : "bg-white/20"
+                          }`}
+                          style={{ width: `${stat.value}%` }}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
               {/* Description */}
               <p className={`text-white/60 leading-relaxed transition-opacity duration-300 ${
                 activeStep === index ? "opacity-100" : "opacity-60"
@@ -151,16 +186,23 @@ export function HowItWorksSection() {
                 {step.description}
               </p>
 
+              {/* Read More */}
+              <a
+                href={step.href}
+                onClick={(e) => e.stopPropagation()}
+                className="inline-flex items-center gap-2 mt-6 text-sm font-mono text-white/50 hover:text-[#d4af6a] transition-colors duration-300"
+              >
+                Read More
+                <span aria-hidden="true">→</span>
+              </a>
+
               {/* Active indicator */}
-              <div className={`absolute bottom-0 left-0 right-0 h-1 bg-[#eca8d6] transition-transform duration-500 origin-left ${
+              <div className={`absolute bottom-0 left-0 right-0 h-1 bg-[#d4af6a] transition-transform duration-500 origin-left ${
                 activeStep === index ? "scale-x-100" : "scale-x-0"
               }`} />
             </button>
           ))}
         </div>
-
-        {/* Code Preview - Large terminal */}
-        
       </div>
 
       <style jsx>{`
