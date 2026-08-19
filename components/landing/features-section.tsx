@@ -1,136 +1,42 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Compass, Layers, ShieldCheck, MessageSquareText } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-const features = [
+const steps = [
   {
     number: "01",
-    title: "Autonomous Execution",
-    description: "Deploy AI agents that work independently. They analyze, decide, and execute complex multi-step tasks without human intervention.",
-    stats: { value: "99.7%", label: "task completion" },
+    title: "Define",
+    description:
+      "Stakeholder interviews, objective setting, and hypothesis shaping before we field anything.",
+    icon: <Compass className="w-6 h-6" />,
   },
   {
     number: "02",
-    title: "Distributed Computing",
-    description: "Offload compute-heavy tasks to our global network. Your agents run on optimized infrastructure across 50+ regions worldwide.",
-    stats: { value: "50+", label: "global regions" },
+    title: "Design",
+    description:
+      "Quant, qual, or hybrid study design matched to speed, confidence level, and budget.",
+    icon: <Layers className="w-6 h-6" />,
   },
   {
     number: "03",
-    title: "Multi-Agent Orchestration",
-    description: "Coordinate teams of specialized agents. They communicate, delegate, and collaborate to solve complex problems together.",
-    stats: { value: "1000x", label: "parallel execution" },
+    title: "Validate",
+    description:
+      "Recruitment control, quality checks, and clear fieldwork governance across every market.",
+    icon: <ShieldCheck className="w-6 h-6" />,
   },
   {
     number: "04",
-    title: "Secure Sandboxing",
-    description: "Each agent runs in isolated environments. Full audit trails, encrypted execution, and zero data leakage between tasks.",
-    stats: { value: "0", label: "data breaches" },
+    title: "Translate",
+    description:
+      "Executive summaries, segment stories, and action plans teams can use immediately.",
+    icon: <MessageSquareText className="w-6 h-6" />,
   },
 ];
 
-// Floating dot particles visualization
-function ParticleVisualization() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const frameRef = useRef(0);
-  const mouseRef = useRef({ x: 0.5, y: 0.5 });
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    const resize = () => {
-      const rect = canvas.getBoundingClientRect();
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = rect.width * dpr;
-      canvas.height = rect.height * dpr;
-      ctx.scale(dpr, dpr);
-    };
-    resize();
-    window.addEventListener("resize", resize);
-
-    const handleMouseMove = (e: MouseEvent) => {
-      const rect = canvas.getBoundingClientRect();
-      mouseRef.current = {
-        x: (e.clientX - rect.left) / rect.width,
-        y: (e.clientY - rect.top) / rect.height,
-      };
-    };
-    canvas.addEventListener("mousemove", handleMouseMove);
-
-    // Generate stable particle positions
-    const COUNT = 70;
-    const particles = Array.from({ length: COUNT }, (_, i) => {
-      const seed = i * 1.618;
-      return {
-        bx: ((seed * 127.1) % 1),
-        by: ((seed * 311.7) % 1),
-        phase: seed * Math.PI * 2,
-        speed: 0.4 + (seed % 0.4),
-        radius: 1.2 + (seed % 2.2),
-      };
-    });
-
-    let time = 0;
-    const render = () => {
-      const rect = canvas.getBoundingClientRect();
-      const w = rect.width;
-      const h = rect.height;
-
-      ctx.clearRect(0, 0, w, h);
-
-      const mx = mouseRef.current.x;
-      const my = mouseRef.current.y;
-
-      particles.forEach((p) => {
-        const flowX = Math.sin(time * p.speed * 0.4 + p.phase) * 38;
-        const flowY = Math.cos(time * p.speed * 0.3 + p.phase * 0.7) * 24;
-
-        const bx = p.bx * w;
-        const by = p.by * h;
-        const dx = p.bx - mx;
-        const dy = p.by - my;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        const influence = Math.max(0, 1 - dist * 2.8);
-
-        const x = bx + flowX + influence * Math.cos(time + p.phase) * 36;
-        const y = by + flowY + influence * Math.sin(time + p.phase) * 36;
-
-        const pulse = Math.sin(time * p.speed + p.phase) * 0.5 + 0.5;
-        const alpha = 0.08 + pulse * 0.18 + influence * 0.3;
-
-        ctx.beginPath();
-        ctx.arc(x, y, p.radius + pulse * 0.8, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
-        ctx.fill();
-      });
-
-      time += 0.016;
-      frameRef.current = requestAnimationFrame(render);
-    };
-    render();
-
-    return () => {
-      window.removeEventListener("resize", resize);
-      canvas.removeEventListener("mousemove", handleMouseMove);
-      cancelAnimationFrame(frameRef.current);
-    };
-  }, []);
-
-  return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 pointer-events-auto"
-      style={{ width: "100%", height: "100%" }}
-    />
-  );
-}
-
 export function FeaturesSection() {
   const [isVisible, setIsVisible] = useState(false);
-  const [activeFeature, setActiveFeature] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -149,77 +55,109 @@ export function FeaturesSection() {
     <section
       id="features"
       ref={sectionRef}
-      className="relative py-24 lg:py-32 overflow-hidden"
+      className="relative py-24 lg:py-32 overflow-hidden bg-black"
     >
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-        {/* Header - Full width with diagonal layout */}
-        <div className="relative mb-24 lg:mb-32">
-          <div className="grid lg:grid-cols-12 gap-8 items-end">
-            <div className="lg:col-span-7">
-              <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground mb-6">
-                <span className="w-12 h-px bg-foreground/30" />
-                Capabilities
-              </span>
-              <h2
-                className={`text-6xl md:text-7xl lg:text-[128px] font-display tracking-tight leading-[0.9] transition-all duration-1000 ${
-                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                }`}
+      {/* Ambient background glow */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] bg-amber-500/[0.025] rounded-full blur-[80px]" />
+<div className="absolute bottom-1/4 right-1/4 w-[300px] h-[300px] bg-amber-600/[0.025] rounded-full blur-[80px]" />
+      </div>
+
+      <div className="relative max-w-6xl mx-auto px-6 lg:px-12">
+        {/* Header */}
+        <div className="text-center space-y-6 mb-24">
+         <div className="font-handwritten text-3xl md:text-4xl font-normal text-amber-400 rotate-[-2deg] tracking-wide">
+  Approach
+</div>
+          <div className="relative">
+            <h2
+              className={`text-4xl md:text-5xl font-bold font-handwritten text-amber-100 rotate-[-1deg] max-w-3xl mx-auto leading-tight transition-all duration-1000 ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
+            >
+              A horizontal research rail that shows progress at a glance.
+            </h2>
+            <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-44 h-3 bg-amber-500/20 rotate-[-1deg] rounded-full blur-sm" />
+          </div>
+          <p
+            className={`font-handwritten text-xl text-zinc-400 rotate-[-1deg] transition-all duration-1000 delay-200 ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
+          >
+            This section now reads like a journey map rather than stacked process cards.
+          </p>
+        </div>
+
+        {/* Horizontal research rail */}
+        <div className="relative">
+          {/* Connecting glowing dashed line across the rail (desktop only) */}
+          <div className="hidden md:block absolute top-6 left-6 right-6 h-px z-0">
+            <div className="w-full h-full border-t-2 border-dashed border-amber-500/30" />
+            <div className="w-full h-full bg-gradient-to-r from-transparent via-amber-400/40 to-transparent blur-sm -mt-1" />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-6">
+            {steps.map((step, index) => (
+              <div
+                key={step.number}
+                className={cn(
+                  "relative group transition-all duration-700",
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12",
+                  index === 0 && "rotate-[-1deg]",
+                  index === 1 && "rotate-[1deg]",
+                  index === 2 && "rotate-[-2deg]",
+                  index === 3 && "rotate-[1deg]"
+                )}
+                style={{ transitionDelay: `${index * 120}ms` }}
               >
-                Intelligent
-                <br />
-                <span className="text-muted-foreground">workers.</span>
-              </h2>
-            </div>
-            <div className="lg:col-span-5 lg:pb-4">
-              <p className={`text-xl text-muted-foreground leading-relaxed transition-all duration-1000 delay-200 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-              }`}>
-                Deploy autonomous AI agents that execute complex tasks across distributed infrastructure. No supervision required.
-              </p>
-            </div>
+                {/* Glowing bulb node marking this step on the rail */}
+                <div className="hidden md:flex absolute -top-[38px] left-6 w-3 h-3 z-10 items-center justify-center">
+                  <span className="absolute w-8 h-8 rounded-full bg-amber-400/30 blur-md group-hover:bg-amber-300/50 transition-colors duration-500" />
+                  <span className="relative w-2.5 h-2.5 rounded-full bg-amber-300 shadow-[0_0_8px_2px_rgba(251,191,36,0.8)]" />
+                </div>
+
+                {/* Offset hand-drawn shadow block, now glowing amber instead of flat black */}
+                <div
+                  className={cn(
+                    "absolute inset-0 bg-zinc-950",
+                    "border-2 border-amber-500/60",
+                    "rounded-lg",
+                    "shadow-[4px_4px_0px_0px] shadow-amber-500/40",
+                    "transition-all duration-300",
+                    "group-hover:shadow-[8px_8px_0px_0px] group-hover:shadow-amber-400/60",
+                    "group-hover:translate-x-[-4px]",
+                    "group-hover:translate-y-[-4px]"
+                  )}
+                />
+
+                <div className="relative p-6 h-full flex flex-col">
+                  <div className="flex items-center justify-between mb-4">
+                    <div
+                      className="w-12 h-12 rounded-full flex items-center justify-center
+                      border-2 border-amber-500/60 text-amber-400"
+                    >
+                      {step.icon}
+                    </div>
+                    <span className="font-handwritten text-3xl text-amber-500/30">
+                      {step.number}
+                    </span>
+                  </div>
+
+                  <h3 className="font-handwritten text-2xl text-amber-100 mb-2">
+                    {step.title}
+                  </h3>
+                  <p className="font-handwritten text-lg text-zinc-400 leading-snug">
+                    {step.description}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Bento Grid Layout */}
-        <div className="grid lg:grid-cols-12 gap-4 lg:gap-6">
-          {/* Large feature card */}
-          <div 
-            className={`lg:col-span-12 relative bg-black border border-foreground/10 min-h-[500px] overflow-hidden group transition-all duration-700 flex ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-            }`}
-            onMouseEnter={() => setActiveFeature(0)}
-          >
-            {/* Left: text content */}
-            <div className="relative flex-1 p-8 lg:p-12 bg-black">
-              <ParticleVisualization />
-              <div className="relative z-10">
-                <span className="font-mono text-sm text-muted-foreground">{features[0].number}</span>
-                <h3 className="text-3xl lg:text-4xl font-display mt-4 mb-6 group-hover:translate-x-2 transition-transform duration-500">
-                  {features[0].title}
-                </h3>
-                <p className="text-lg text-muted-foreground leading-relaxed max-w-md mb-8">
-                  {features[0].description}
-                </p>
-                <div>
-                  <span className="text-5xl lg:text-6xl font-display">{features[0].stats.value}</span>
-                  <span className="block text-sm text-muted-foreground font-mono mt-2">{features[0].stats.label}</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Right: mirrored image, full height */}
-            <div className="hidden lg:block relative w-[42%] shrink-0 overflow-hidden">
-              <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Upscaled%20Image%20%2812%29-ng3RrNnsPMJ5CrtOjcPTmhHg01W11q.png"
-                alt=""
-                aria-hidden="true"
-                className="absolute inset-0 w-full h-full object-cover object-center"
-                style={{ transform: "scaleX(-1)" }}
-              />
-              {/* Fade left edge into black */}
-              <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-transparent" />
-            </div>
-          </div>
+        <div className="absolute -z-10 inset-0 overflow-hidden">
+          <div className="absolute top-40 left-20 text-4xl rotate-12 text-amber-500/40">✎</div>
+          <div className="absolute bottom-40 right-20 text-4xl -rotate-12 text-amber-500/40">✏️</div>
         </div>
       </div>
     </section>

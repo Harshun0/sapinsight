@@ -53,7 +53,7 @@ export function InfrastructureSection() {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}>
               <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/world-3i68QNWJwmO7W19ztZWbevAwJQHzYL.png"
+                src="https://res.cloudinary.com/drvug594q/image/upload/v1787096618/golden_glow_output_exvikp.png"
                 alt="Global network sphere"
                 className="w-full h-full object-contain object-center"
               />
@@ -144,11 +144,11 @@ export function InfrastructureSection() {
             
             <div className="relative z-10">
               <div className="flex items-baseline gap-2 mb-4">
-                <span className="text-8xl lg:text-[10rem] font-display leading-none">29</span>
-                <span className="text-2xl text-muted-foreground">regions</span>
+                <span className="text-8xl lg:text-[10rem] font-display leading-none">18</span>
+                <span className="text-2xl text-muted-foreground">Percent</span>
               </div>
               <p className="text-muted-foreground max-w-md">
-                Compute nodes distributed globally for maximum redundancy and minimum latency.
+                Three forces shaping market demand this quarter.
               </p>
             </div>
           </div>
