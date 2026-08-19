@@ -66,7 +66,7 @@ export function FeaturesSection() {
       <div className="relative max-w-6xl mx-auto px-6 lg:px-12">
         {/* Header */}
         <div className="text-center space-y-6 mb-24">
-         <div className="font-handwritten text-3xl md:text-4xl font-normal text-amber-400 rotate-[-2deg] tracking-wide">
+        <div className="inline-flex items-center gap-3 px-9 py-4 rounded-full border border-[#f0b95c]/40 bg-[#f0b95c]/10 text-[#f0b95c] text-3xl md:text-4xl font-bold uppercase tracking-widest rotate-[-1deg] mb-6">
   Approach
 </div>
           <div className="relative">
