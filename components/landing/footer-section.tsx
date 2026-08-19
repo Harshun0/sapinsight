@@ -4,35 +4,27 @@ import { ArrowUpRight } from "lucide-react";
 import { useEffect, useRef } from "react";
 
 const footerLinks = {
-  Product: [
-    { name: "Agent capabilities", href: "#features" },
-    { name: "How it works", href: "#how-it-works" },
-    { name: "Pricing", href: "#pricing" },
-    { name: "Integrations", href: "#integrations" },
-  ],
-  Developers: [
-    { name: "Documentation", href: "#developers" },
-    { name: "Agent SDK", href: "#" },
-    { name: "API Reference", href: "#developers" },
-    { name: "Status", href: "#" },
-  ],
-  Company: [
-    { name: "About", href: "#" },
-    { name: "Blog", href: "#" },
-    { name: "Careers", href: "#", badge: "Hiring" },
+  "Quick Links": [
+    { name: "Home", href: "#" },
+    { name: "About Us", href: "#" },
     { name: "Contact", href: "#" },
+    { name: "Services", href: "#" },
+  ],
+  Services: [
+    { name: "Online Sampling", href: "#" },
+    { name: "Data Collection", href: "#" },
+    { name: "Data Processing", href: "#" },
   ],
   Legal: [
-    { name: "Privacy", href: "#" },
-    { name: "Terms", href: "#" },
-    { name: "Security", href: "#security" },
+    { name: "Terms and Conditions", href: "#" },
+    { name: "GDPR Privacy Policy", href: "#" },
+    { name: "Privacy Policy", href: "#" },
   ],
 };
 
 const socialLinks = [
-  { name: "Twitter", href: "#" },
-  { name: "GitHub", href: "#" },
   { name: "LinkedIn", href: "#" },
+  { name: "Twitter", href: "#" },
 ];
 
 function AnimatedWaveCanvas() {
@@ -97,7 +89,7 @@ export function FooterSection() {
       {/* Panoramic banner image */}
       <div className="relative w-full h-[340px] md:h-[420px] overflow-hidden">
         <img
-          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Upscaled%20Image%20%2810%29-UnDKstODkIENp5xqTYUEpt0Sm8tNOw.png"
+          src="https://res.cloudinary.com/drvug594q/image/upload/v1787110690/image.png_202608190906_erasio_lxxtw1.png"
           alt="Bioluminescent landscape"
           className="w-full h-full object-cover object-center"
         />
@@ -114,14 +106,23 @@ export function FooterSection() {
           <div className="grid grid-cols-2 md:grid-cols-6 gap-12 lg:gap-8">
             {/* Brand Column */}
             <div className="col-span-2">
-              <a href="#" className="inline-flex items-center gap-2 mb-6">
-                <span className="text-2xl font-display text-white">COMPUTE</span>
-                <span className="text-xs text-white/40 font-mono">TM</span>
+              <a href="#" className="inline-flex items-baseline gap-0 mb-6">
+                <span className="text-2xl font-display text-white">SAP</span>
+                <span className="text-xs font-display text-white/60 leading-none tracking-widest mx-0.5">I</span>
+                <span className="text-2xl font-display text-white">ENTA</span>
+                <span className="text-xs text-white/50 font-mono ml-2">Insights</span>
               </a>
 
               <p className="text-white/50 leading-relaxed mb-8 max-w-xs text-sm">
-                Autonomous AI agents for distributed computing. Delegate complex tasks to intelligent workers.
+                Sapienta Insights is an emerging innovative organization in first-party data and insights, serving over 5.4 million+ professionals worldwide.
               </p>
+
+              {/* Contact info */}
+              <div className="space-y-2 mb-8 text-sm text-white/40">
+                <p><span className="text-white/60">Phone:</span> +91 70424 41633</p>
+                <p><span className="text-white/60">Mail:</span> info@sapientainsights.com</p>
+                <p className="max-w-xs"><span className="text-white/60">Location:</span> H.no 392 Indira colony no.1 sec 52 near shiv mandir, Gurugram, Haryana, India – 122003</p>
+              </div>
 
               {/* Social Links */}
               <div className="flex gap-6">
@@ -167,7 +168,7 @@ export function FooterSection() {
         {/* Bottom Bar */}
         <div className="py-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-white/30">
-            &copy; 2025 COMPUTE. All rights reserved.
+            &copy; 2025 Sapienta Insights. All rights reserved.
           </p>
 
           <div className="flex items-center gap-4 text-sm text-white/30">

@@ -3,13 +3,17 @@ import { HeroSection } from "@/components/landing/hero-section";
 import { FeaturesSection } from "@/components/landing/features-section";
 import { HowItWorksSection } from "@/components/landing/how-it-works-section";
 import { InfrastructureSection } from "@/components/landing/infrastructure-section";
+// import { SectorsSection } from "@/components/landing/sectors-section";
 import { MetricsSection } from "@/components/landing/metrics-section";
+import { WhySection } from "@/components/landing/why-section";
 import { IntegrationsSection } from "@/components/landing/integrations-section";
 import { SecuritySection } from "@/components/landing/security-section";
+import { FaqSection } from "@/components/landing/faq-section";
 import { DevelopersSection } from "@/components/landing/developers-section";
 import { TestimonialsSection } from "@/components/landing/testimonials-section";
 import { PricingSection } from "@/components/landing/pricing-section";
 import { CtaSection } from "@/components/landing/cta-section";
+import { ContactSection } from "@/components/landing/contact-section";
 import { FooterSection } from "@/components/landing/footer-section";
 
 export default function Home() {
@@ -20,13 +24,17 @@ export default function Home() {
       <FeaturesSection />
       <HowItWorksSection />
       <InfrastructureSection />
+      {/* <SectorsSection /> */}
       <MetricsSection />
+      <WhySection />
       <IntegrationsSection />
       <SecuritySection />
-      <DevelopersSection />
-      <TestimonialsSection />
-      <PricingSection />
-      <CtaSection />
+      <FaqSection />
+          {/* <DevelopersSection />
+          <TestimonialsSection />
+          <PricingSection /> */}
+      {/* <CtaSection /> */}
+      <ContactSection />
       <FooterSection />
     </main>
   );

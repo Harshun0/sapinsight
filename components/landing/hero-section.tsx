@@ -109,25 +109,27 @@ export function HeroSection() {
           </p>
 
           {/* CTAs */}
-          <div
-  className={`flex flex-col sm:flex-row items-start gap-4 -mt-6 transition-all duration-700 delay-300 ${
-    isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-  }`}
->
-            <Button
-              size="lg"
-              className="bg-foreground hover:bg-foreground/90 text-background px-8 h-14 text-base rounded-full group"
+          <div className="lg:-translate-y-30">
+            <div
+              className={`flex flex-col sm:flex-row items-start gap-4 transition-all duration-700 delay-300 ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              }`}
             >
-              Start A Research Brief
-              <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="h-14 px-8 text-base rounded-full border-foreground/20 hover:bg-foreground/5"
-            >
-              Explore Services
-            </Button>
+              <Button
+                size="lg"
+                className="bg-foreground hover:bg-foreground/90 text-background px-8 h-14 text-base rounded-full group"
+              >
+                Start A Research Brief
+                <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="h-14 px-8 text-base rounded-full border-foreground/20 hover:bg-foreground/5"
+              >
+                Explore Services
+              </Button>
+            </div>
           </div>
         </div>
       </div>
