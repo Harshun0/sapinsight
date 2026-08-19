@@ -30,7 +30,7 @@ export function HeroSection() {
         loop
         playsInline
         className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-        src="https://res.cloudinary.com/drvug594q/video/upload/v1787128372/bg-hero-golden_1_ldpmu8.mp4"
+        src="https://res.cloudinary.com/drvug594q/video/upload/v1787128096/hf_20260405_170732_8a9ccda6-5cff-4628-b164-059c500a2b41_hshhwg.mp4"
       />
       {/* Dark overlay so text stays readable */}
       <div className="absolute inset-0 bg-black/60 pointer-events-none" />

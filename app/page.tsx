@@ -15,27 +15,32 @@ import { PricingSection } from "@/components/landing/pricing-section";
 import { CtaSection } from "@/components/landing/cta-section";
 import { ContactSection } from "@/components/landing/contact-section";
 import { FooterSection } from "@/components/landing/footer-section";
+import { PageWrapper } from "@/components/landing/page-wrapper";
+import { AgentTypesSection } from "@/components/landing/agent-types-section";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen overflow-x-hidden">
-      <Navigation />
-      <HeroSection />
-      <FeaturesSection />
-      <HowItWorksSection />
-      <InfrastructureSection />
-      {/* <SectorsSection /> */}
-      <MetricsSection />
-      <WhySection />
-      <IntegrationsSection />
-      <SecuritySection />
-      <FaqSection />
-          {/* <DevelopersSection />
-          <TestimonialsSection />
-          <PricingSection /> */}
-      {/* <CtaSection /> */}
-      <ContactSection />
-      <FooterSection />
-    </main>
+    <PageWrapper>
+      <main className="relative min-h-screen">
+        <Navigation />
+        <HeroSection />
+        <FeaturesSection />
+        <HowItWorksSection />
+        <InfrastructureSection />
+        {/* <SectorsSection /> */}
+        <AgentTypesSection />
+        <MetricsSection />
+        <WhySection />
+        <IntegrationsSection />
+        <SecuritySection />
+        <FaqSection />
+            {/* <DevelopersSection />
+            <TestimonialsSection />
+            <PricingSection /> */}
+        {/* <CtaSection /> */}
+        <ContactSection />
+        <FooterSection />
+      </main>
+    </PageWrapper>
   );
 }
