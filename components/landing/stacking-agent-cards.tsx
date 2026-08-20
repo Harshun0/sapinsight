@@ -137,9 +137,10 @@ export function StackingAgentCards() {
                       <Tag>{agent.label}</Tag>
                     </div>
                     <h3 className="text-xl font-light mb-3 text-white">{agent.title}</h3>
-                    <p className="text-sm text-white/45 leading-relaxed mb-8">{agent.desc}</p>
+                    <p className="text-sm text-white/45 leading-relaxed mb-6">{agent.desc}</p>
                   </div>
-                  <div className="flex gap-8 pt-6 border-t border-white/[0.08]">
+                  {/* Divider border removed below */}
+                  <div className="flex gap-8">
                     {agent.stats.map(s => (
                       <div key={s.l}>
                         <div className="text-2xl font-light text-white">{s.v}</div>
