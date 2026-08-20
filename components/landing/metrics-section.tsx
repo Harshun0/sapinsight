@@ -520,3 +520,5 @@ export function MetricsSection() {
     </section>
   );
 }
+
+export default MetricsSection;

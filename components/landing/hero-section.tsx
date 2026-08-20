@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { AnimatedSphere } from "./animated-sphere";
 
 const words = ["map", "segment", "validate", "decide"]
 
@@ -23,17 +24,36 @@ export function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
-      {/* Video background */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-        src="https://res.cloudinary.com/drvug594q/video/upload/v1787128096/hf_20260405_170732_8a9ccda6-5cff-4628-b164-059c500a2b41_hshhwg.mp4"
-      />
-      {/* Dark overlay so text stays readable */}
-      <div className="absolute inset-0 bg-black/60 pointer-events-none" />
+      {/* Animated sphere background */}
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[600px] h-[600px] lg:w-[800px] lg:h-[800px] opacity-60 pointer-events-none">
+        <AnimatedSphere />
+      </div>
+
+      {/* Subtle grid lines */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30">
+        {[...Array(8)].map((_, i) => (
+          <div
+            key={`h-${i}`}
+            className="absolute h-px bg-foreground/10"
+            style={{
+              top: `${12.5 * (i + 1)}%`,
+              left: 0,
+              right: 0,
+            }}
+          />
+        ))}
+        {[...Array(12)].map((_, i) => (
+          <div
+            key={`v-${i}`}
+            className="absolute w-px bg-foreground/10"
+            style={{
+              left: `${8.33 * (i + 1)}%`,
+              top: 0,
+              bottom: 0,
+            }}
+          />
+        ))}
+      </div>
 
       <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12 py-32 lg:py-40">
         {/* Eyebrow */}
@@ -44,7 +64,7 @@ export function HeroSection() {
         >
           <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground">
             <span className="w-8 h-px bg-foreground/30" />
-            The platform for modern teams
+            Demand mapping · customer insight · competitor intelligence
           </span>
         </div>
 
@@ -55,9 +75,9 @@ export function HeroSection() {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
-            <span className="block">The platform</span>
+            <span className="block">Research that helps you</span>
             <span className="block">
-              to{" "}
+              {" "}
               <span className="relative inline-block">
                 <span key={wordIndex} className="inline-flex">
                   {words[wordIndex].split("").map((char, i) => (
@@ -73,7 +93,8 @@ export function HeroSection() {
                   ))}
                 </span>
                 <span className="absolute -bottom-2 left-0 right-0 h-3 bg-foreground/10" />
-              </span>
+              </span>{" "}
+              the market
             </span>
           </h1>
         </div>
@@ -85,31 +106,31 @@ export function HeroSection() {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            Sapienta Insights designs market research programs for brands, agencies, and growth teams that need sharper segmentation, stronger product decisions, and evidence they can present with confidence.
+            Sapienta Insights designs market research programs for brands,
+            agencies, and growth teams that need sharper segmentation and
+            evidence they can present with confidence.
           </p>
 
           {/* CTAs */}
-          <div className="lg:-translate-y-30">
-            <div
-              className={`flex flex-col sm:flex-row items-start gap-4 transition-all duration-700 delay-300 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-              }`}
+          <div
+            className={`flex flex-col sm:flex-row items-start gap-4 transition-all duration-700 delay-300 ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
+          >
+            <Button
+              size="lg"
+              className="bg-foreground hover:bg-foreground/90 text-background px-8 h-14 text-base rounded-full group"
             >
-              <Button
-                size="lg"
-                className="bg-foreground hover:bg-foreground/90 text-background px-8 h-14 text-base rounded-full group"
-              >
-                Start A Research Brief
-                <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="h-14 px-8 text-base rounded-full border-foreground/20 hover:bg-foreground/5"
-              >
-                Explore Services
-              </Button>
-            </div>
+              Start a research brief
+              <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="h-14 px-8 text-base rounded-full border-foreground/20 hover:bg-foreground/5"
+            >
+              Explore services
+            </Button>
           </div>
         </div>
       </div>
@@ -124,7 +145,7 @@ export function HeroSection() {
           {[...Array(2)].map((_, i) => (
             <div key={i} className="flex gap-16">
               {[
-               { value: "42", label: "markets covered", company: "APAC · MENA · EUROPE" },
+                { value: "42", label: "markets covered", company: "APAC · MENA · EUROPE" },
                 { value: "380", label: "studies launched", company: "TRACKING · PRICING · CX" },
                 { value: "12 days", label: "median turnaround", company: "BRIEF TO REPORT" },
                 { value: "+18%", label: "consumer confidence rebound", company: "INDIA · UAE · SINGAPORE" },
